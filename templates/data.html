@@ -1,0 +1,52 @@
+{% extends "Base.html" %}
+{% block title %}Data{% endblock title%}
+
+{%block body%}
+    This is Data Page
+    Welcome {{request.user}}
+    <p> Enter new data </p>
+    <style>
+      .form-control {
+          display: block;
+          width:300px;
+          height: calc(1.5em + 0.75rem + 2px);
+          padding: 0.375rem 0.75rem;
+          font-size: 1rem;
+          font-weight: 400;
+          line-height: 1.5;
+          color: #495057;
+          background-color: #fff;
+          background-clip: padding-box;
+          border: 1px solid #ced4da;
+          border-radius: 0.25rem;
+      }
+    </style>
+    <div class="conatiner-fluid px-0">
+        <h3>New Data</h3>
+        <form method="post" action="/setdata">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="Name" class="form-label">Climate Type</label>
+                <input type="text" class="form-control" name ="climate">
+              </div>
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label"> Area Code</label>
+              <input type="text" class="form-control"  name ="area" >
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Temperature </label>
+                <input type="text" class="form-control"  name ="temperature" >
+              </div>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Humidity </label>
+                <input type="text" class="form-control"  name ="humidity" >
+              </div>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Chances </label>
+                <input type="text" class="form-control" name ="chances" >
+              </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+    </div>
+    <a href="/logout">Logout</a>
+{%endblock body%}

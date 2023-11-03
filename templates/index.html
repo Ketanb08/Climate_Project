@@ -1,0 +1,50 @@
+{% extends "Base.html" %}
+{% block title %}Home{% endblock title%}
+
+{%block body%}
+    This is Home Page
+    <br><img src="/static/Image6.jpg"balt="..." width=600 height=400><br>
+        <style>
+            .form-control {
+                display: block;
+                width:300px;
+                height: calc(1.5em + 0.75rem + 2px);
+                padding: 0.375rem 0.75rem;
+                font-size: 1rem;
+                font-weight: 400;
+                line-height: 1.5;
+                color: #495057;
+                background-color: #fff;
+                background-clip: padding-box;
+                border: 1px solid #ced4da;
+                border-radius: 0.25rem;
+            }
+            .container-fluid.px-0{
+                position:absolute;
+                top: 300px;
+                left: 700px;
+            }
+         </style>
+    <div class="conatiner-fluid px-0">
+        <h3>Get Data</h3>
+        <form method="post" action="">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label"> Area Code</label>
+              <input type="text" class="form-control"  name ="area" >
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+    </div>
+
+    <div class="container-fluid px-0">
+                {% if info %}
+                    <h3>Area Code Information</h3>
+                    <p>Climate: {{info.climate }}</p>
+                    <p>Temperature: {{info.temperature }}</p>
+                    <p>Humidity: {{info.humidity }}</p>
+                    <p>Chances of Rain: {{info.chances }}</p>
+                    <p>Area Code: {{info.area }}</p>
+                {% endif %}
+            </div>
+{%endblock body%}
