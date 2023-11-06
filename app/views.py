@@ -9,7 +9,17 @@ from app.models import Climate
 def home(request):
     if request.method == "POST":
         area = request.POST.get("area", "Enter valid Area code")
-        info = Climate.objects.filter(area=area).first()  # Fetch area info from the database
+        climate=request.POST.get("climate","Enter valid Climate Type")
+        if(area=="" and climate==""):
+            info2=Climate.objects.all()
+            print(info2.count())
+            return render(request, "index.html", {"info2": info2})
+        elif (area=="Enter valid Area code") or (area==""):
+            info=Climate.objects.filter(climate=climate).first()
+        elif(climate=="Enter valid Climate Type" or (climate=="")):
+            info=Climate.objects.filter(area=area).first()
+        else:
+            info=Climate.objects.filter(climate=climate,area=area).first()
         return render(request, "index.html", {"info": info})
     return render(request,'index.html')
 
@@ -19,14 +29,12 @@ def services(request):
 def about(request):
     return render(request,'about.html')
 
-
 def loginUser(request):
     return render(request,'login.html')
 
 def logoutUser(request):
         logout(request)
         return render(request,'index.html')
-
 
 def data(request):
     if request.method=="POST":
@@ -39,8 +47,7 @@ def data(request):
         else:
             return render(request,'login.html')
     else:
-        return redirect(request,'login.html')
-
+        return redirect('login')
 
 def setdata(request):
     if request.method=="POST":
@@ -51,8 +58,17 @@ def setdata(request):
         chances=request.POST.get('chances')
         condition=Climate(climate=climate,temperature=temperature,area=area,chances=chances,humidity=humidity,date=datetime.today())
         condition.save()
-    return render(request,'index.html')
+    return render(request,'data.html')
     
+def changedata(request):
+    if request.method=="POST":
+        area=request.POST.get("area","No Information")
+        obj=Climate.objects.filter(area=area).first()
+        newclimate=request.POST.get("newclimate","No Information")
+        oldclimate=request.POST.get("oldclimate","No Information")
+        obj.climate=newclimate
+        obj.save()
+    return render(request,'data.html')
 
 def contact(request):
     return render(request,'contact.html')

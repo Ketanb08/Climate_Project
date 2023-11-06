@@ -11,4 +11,5 @@ urlpatterns = [
     path('logout', views.logoutUser,name="logout"),
     path('data',views.data,name="data"),
     path('setdata',views.setdata,name="setdata"),
+    path('changedata',views.changedata,name="changedata"),
 ]

@@ -20,6 +20,11 @@
           border: 1px solid #ced4da;
           border-radius: 0.25rem;
       }
+      .conatiner{
+        position:absolute;
+        top: 120px;
+        left: 700px;
+      }
     </style>
     <div class="conatiner-fluid px-0">
         <h3>New Data</h3>
@@ -48,5 +53,24 @@
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>
     </div>
+    <div class="conatiner">
+      <h3>Change Data </h3>
+      <form method="post" action="/changedata">
+          {% csrf_token %}
+          <div class="mb-3">
+              <label for="Name" class="form-label">Old Climate Type</label>
+              <input type="text" class="form-control" name ="oldclimate">
+            </div>
+            <div class="mb-3">
+              <label for="Name" class="form-label">New Climate Type</label>
+              <input type="text" class="form-control" name ="newclimate">
+            </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label"> Area Code</label>
+            <input type="text" class="form-control"  name ="area" >
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+  </div>
     <a href="/logout">Logout</a>
 {%endblock body%}

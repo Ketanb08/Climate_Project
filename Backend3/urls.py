@@ -26,4 +26,5 @@ urlpatterns = [
     path('data',include('app.urls')),
     path('logout',include('app.urls')),
     path('setdata',include('app.urls')),
+    path('changedata',include('app.urls')),
 ]
