@@ -3,8 +3,7 @@
 
 {%block body%}
     This is Data Page
-    Welcome {{request.user}}
-    <p> Enter new data </p>
+    <br><h3>Welcome {{request.user}}</h3>
     <style>
       .form-control {
           display: block;
@@ -21,6 +20,16 @@
           border-radius: 0.25rem;
       }
       .conatiner{
+        position:absolute;
+        top: 120px;
+        left: 700px;
+      }
+      .conatiner1{
+        position:absolute;
+        top: 120px;
+        left: 700px;
+      }
+      .conatiner2{
         position:absolute;
         top: 120px;
         left: 700px;
@@ -53,6 +62,14 @@
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>
     </div>
+    <div class="container1">
+      {% if exception %}
+        <h4> Improper Form fields</h4>
+      {% endif%}
+      {% if success %}
+        <h4> Form Submitted</h4>
+      {% endif%}
+    </div>
     <div class="conatiner">
       <h3>Change Data </h3>
       <form method="post" action="/changedata">
@@ -71,6 +88,22 @@
           </div>
           <button type="submit" class="btn btn-primary">Submit</button>
         </form>
+  </div>
+    <div class="container" style="position:absolute;top: 485px;left: 685px;">
+        <h4> Data changed</h4>
+    </div>
+    {% if old1 %}
+      <h4> Enter proper old climate</h4>
+    {% endif%}
+    {% if new1 %}
+      <h4> Enter proper new climate</h4>
+    {% endif%}
+    {% if area1 %}
+      <h4> Enter proper area code</h4>
+    {% endif%}
+    {% if success1 %}
+      <h4> Data changed</h4>
+    {% endif%}
   </div>
     <a href="/logout">Logout</a>
 {%endblock body%}

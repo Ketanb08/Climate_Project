@@ -26,12 +26,11 @@
             }
             .container-fluid{
                 position: absolute;
-                top: 900px;
-                left: 0px;}
+                top: 77px;
+                left: 620px;}
                 table{width:60%;}
                 th,td{padding: 20px;
                 text-align:center}
-            
          </style>
     <div class="conatiner-fluid px-0">
         <h3>Get Data</h3>
@@ -48,8 +47,8 @@
             <button type="submit" class="btn btn-primary">Submit</button><br>
             <br><button type="submit" class="btn btn-primary">All Data</button>
     </div>
-    
     <div class="container-fluid px-0">
+        {% if status %}
             {% if info %}
                 <h3>Area Code Information</h3>
                 <p>Climate: {{info.climate }}</p>
@@ -57,13 +56,14 @@
                 <p>Humidity: {{info.humidity }}</p>
                 <p>Chances of Rain: {{info.chances }}</p>
                 <p>Area Code: {{info.area }}</p>
-                {% else %}
-                <h3>Enter area code.</h3>
             {% endif %}
-        </div>
+        {% else %}
+            <h3>No matching Information</h3>
+        {% endif %}
+    </div>
     <div class="container-fluid">
         {% if info2 %}
-            <h1> All Data</h1>
+            <h1 style="position:absolute;top:-35px;left:60px;"> All Data</h1>
             <table>
                 <thead>
                     <tr>
